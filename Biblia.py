@@ -613,8 +613,15 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
             # TODO: Falta colocar para trazer as observações sobre
             # TODO  um versículo se ele for consultado sozinho e
             # TODO  colocar para trazer a tradução se houver.
-            # TODO  No arquivo Biblia_versiculo.txt. não tem ainda
-            # TODO  não esta gravando estas informações.
+            # TODO  No arquivo Biblia_versiculo.txt não tem ainda
+            # TODO  gravando nem observações sobre os versículos
+            # TODO  nem o versículo em inglês e também a leitura
+            # TODO  do versículo como é feita atualmente considera
+            # TODO  que não há nenhum texto depois dele, então se
+            # TODO  passar a ter observações ou traduções depois
+            # TODO  dele, com certeza, vai ter que alterar a forma
+            # TODO  como considera o fim do versículo utilizando
+            # TODO  como delimitador de campo o caractere | (pipe) .
             
             if tp_pesq == 2 or tp_pesq == 5 or\
                tp_pesq == 4 or tp_pesq == 6:
