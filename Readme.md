@@ -1,4 +1,4 @@
-# Programa para Pesquisa de Termos em um Arquivo txt da Bíblia com Leiaute Pré-definido 
+# Programa para Pesquisa de Termos em um Arquivo txt da Bíblia com Leiaute Predefinido 
 
 ## Objetivo
 
@@ -6,13 +6,14 @@
 - Já havia construído um programa similar com Java, más como passei a utilizar o Python e não mais o Java para o tratamento	de arquivos de texto (csv, txt, json, xml, html) para análise de dados, este problema permite testar diversos dos principais conteúdos necessários.
 - [x] Com isso nesse problema proposto deve-se apenas utilizar arquivos no formato texto.
 - [ ] Depois de concluído seria bom ter o mesmo problema resolvido levando o texto de Bíblia.txt para um banco de dados no sqlite3 e inclusive permitir que sejam associados a determinados versículos imagens. Más isso não é do problema proposto atualmente.
+- [x] O sistema de busca foi pensado de forma a explorar recursos como lista e alguns comandos básicos ou list comprehension. Testar os conhecimentos de como transformar uma arquivo texto em um data frame ou um conjunto de dados que possam ser trabalhados, dá mesma forma que posso precisar quando manipulo relatórios extraídos de diversos sistemas de automação comercial para apresentar relatórios Gerenciais.
+- [ ] Em uma versão mais para frente ver a possibilidade de testar algum tipo de script para ordenamento de dados.
 
 ## Problema Proposto
 
 __Problema proposto__: Escrever um programa executável em pc que permita fazer a pesquisa de uma palavra ou uma frase (chamada de termo) na Bíblia.
 - [x] Cada versículo que contenha o termo deve ser mostrado na tela e deve-se criar um arquivo html com essa mesma saída.
 - [x] No versículo mostrado na tela e no arquivo html o termo deve aparecer em cor diferente do restante do texto.
-
 - [x] Fazer a busca de uma palavra inteira exatamente como foi digitada.
 - Exemplo: se a palavra for "casa" não deve mostrar: Casa, casar, casal, casamento acasalamento, etc. Então essa busca é de uma palavra inteira distinguindo maiúscula de minúscula.
 - [x] Fazer a busca de uma palavra inteira independentemente de como foi digitada.
@@ -52,18 +53,20 @@ __Problema proposto__: Escrever um programa executável em pc que permita fazer 
 - O arquivo Biblia.txt foi baixado do site: site: [umsocorpo.com.br](www.umsocorpo.com.br), como isso tem muito tempo não lembro por que escolhi este. Esta informação consta na última linha do arquivo.
 - Um dos objetivos é substituir integralmente este texto original até que ele fique exatamente igual à versão de João Ferreira de Almeida Edição Revista e Corrigida que tenho aqui em casa (É a Bíblia que Zé Bira utilizou em seus estudos e nela fez várias anotações). Comecei a fazer isso muito, muito lentamente, com paradas longas e retomadas demoradas, é algo que desejo fazer sem nenhuma pressa.
 - Do arquivo original baixado fiz várias adaptações para que no próprio arquivo já haja as condições de atender a vários das determinações estabelecidas acima, estas adaptações estão descritas nas primeiras linhas do arquivo.
-- Estas primeiras linhas descrevem como inventei um leiaute, por exemplo se a linha começar com # é uma linha de comentário ele	o programa não vai ler esta linha, se começa com ## é um texto para ser mostrado no botão de ajuda.
+- Estas primeiras linhas descrevem como inventei um leiaute, por exemplo se a linha começar com # é uma linha de comentário, o programa não vai ler esta linha, se começa com ## é um texto para ser mostrado no botão de ajuda.
 	
 ### Alguns tratamentos feitos no arquivo Biblia.txt foram por exemplo:
 
 - [x] No caso dos parenteses no texto deixei eles sempre com um espaço em branco entre eles e as palavras para facilitar na hora de procurar por uma palavra inteira então por exemplo o trecho:
-- "A casa de Maria (filha de Ana)." deixei no texto "A casa de Maria ( filha de Ana ).". Com isso na hora de procurar pela palavra "filha" ou "Ana" não há o que se preocupar com os parentesis. Ficando apenas os sinais de pontuação para serem tratados: '.', ',', ';', ':', '!', '?'. No caso so hifem ele é considerado como parte da palavra.
+- "A casa de Maria (filha de Ana)." deixei no texto "A casa de Maria ( filha de Ana ).". Com isso na hora de procurar pela palavra "filha" ou "Ana" não há o que se preocupar com os parenteses. Ficando apenas os sinais de pontuação para serem tratados: '.', ',', ';', ':', '!', '?'. No caso so hifem ele é considerado como parte da palavra.
 - [x] No caso dos nomes dos livros da Bíblia que tem mais de uma palavra ou que tem algarismo romanos em seu nome como por exemplo: "LAMENTAÇÕES DE JEREMIAS" no arquivo Bíblia.txt está como LAMENTAÇÕES=DE=JEREMIAS e "I CORÍNTIOS" está I=CORÍNTIOS, etc.
 
 ### Leiaute criado dentro do arquivo Bíblia.txt
 
 - [x] As linhas que iniciam com:
 
+- \# É uma linha de comentário o programa não deve ler
+- \## é uma linha com texto que deve ser exibido na tela de ajuda do programa. (Não implementado ainda no código). 
 - @ São dados sobre a versão da Bíblia e sua tradução
 - % Indica onde começa o Antigo e o Novo Testamento
 - | É um texto que na versão de João Ferreira de Almeida Edição Revista e Corrigida aparece antes de alguns versículos com informações sobre aquela passagem, por exemplo: Antes do versículo 1 do Capítulo I de Gênesis tem: "A criação do céu e da terra e de tudo o que se contem." Esse texto refere-se aos eventos que vão do versículo 1 até o 23 do capítulo I, e ele sempre aparece imediatamente antes do versículo que inicia o que ele se refere e nele consta até que versículo vai. Com isso a idéia é que sempre uma busca retornar o primeiro versículo deste comentário esta linha seria mostrada. Más, no texto original que baixei não tem isso, isso eu fui digitando depois lendo direto do texto de João Ferreira de Almeida que eu tenho em casa, eu não coloquei em tudo, apenas nos capítulos iniciais da Gênesis.
@@ -121,8 +124,8 @@ __Problema proposto__: Escrever um programa executável em pc que permita fazer 
 3.	Uma versão para Web?
 4.	Uma versão para smartphone?
 
-## Versão e Alteraçõe
+## Versão e Alterações
 
 Salvador, Pernambués, 23 de março de 2021 3:17
 
-Última Alteração: 18 de abril de 2021 3:17
+Última Alteração: 19 de abril de 2021 12:43
