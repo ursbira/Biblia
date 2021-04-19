@@ -77,6 +77,7 @@ __Problema proposto__: Escrever um programa executável em pc que permita fazer 
 
 ## Como o programa deve proceder:
 - [x] Deve ter um botão para importar o arquivo Biblia.txt que deve ser fornecido com o executável para o usuário e à partir dele deve criar o arquivo biblia_versiculo.txt com o seguinte leiaute:
+- A|B|C|D|E|F|G|I|J|K|L|M|N|O|P|
 - Sendo que na versão deste problema proposto deve considerar somente até a letra G.
 - [x] A = Número sequencial de 00001 a 31096 que é a quantidade de versículos que consta no arquivo Bíblia.txt (Sempre 5 caracteres)
 - [x] B = A indicação de AT (Antigo Testamento) ou NT (Novo Testamento) (Sempre 2 caracteres)
