@@ -450,7 +450,9 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
 
     conta_linha = 0
     total_linha = 0
+    contar_versiculo_localizado = 0
     contar_termo_localizado = 0
+    win2.Element('_versiculo_localizado').Update(str(contar_versiculo_localizado))
     win2.Element('_termo_localizado').Update(str(contar_termo_localizado))
 
     # Abrir o arquivo convertido no formato com versículos
@@ -466,6 +468,7 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
 
         # Inicia a busca do termo pesquisado
         for linha_o in biblia_versiculo:
+            linha_o_min = linha_o.lower()
             linha_separada = pesquisar_apos_5pipe(linha_o)
             # linha contém apenas o versículo propriamente dito
             # sem a parte inicial da linha que identifica o livro,
@@ -488,12 +491,9 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
             # em outro exemplo
             # linha_sem_pont = ''.join(simbolo for simbolo in linha if simbolo not in pointing)
 
-            # Verificar se o termo pesquisado consta na linha
-            # if termo_pesquisa in linha:
-            # contar_termo_localizado += 1
+            win2.Element('_versiculo_localizado').Update(str(contar_versiculo_localizado))
             win2.Element('_termo_localizado').Update(str(contar_termo_localizado))
 
-            # tp_pesq = 2
             # Definir como e onde será a busca de acordo com o tp_pesq
             if tp_pesq == 1:
                 # 1 usa a linha original como lista
@@ -527,16 +527,20 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
                 linha_atual= linha_min
                 termo_atual = termo_min
 
-            # Fazer a busca e mostrar a linha formatando o termo
+            # Aqui o Tipo da Busca já foi definido.
+            # Fazer a busca e mostrar a linha destacando o termo
             # pesquisado
             if tp_pesq == 1 or tp_pesq == 3:
+                # Conta quantos testes foram feitos para comparar
+                # com a quantidade de itens em mapa e saber que 
+                # terminou para ao final acrescentar uma quebra de linha 
                 contar_testes = 0
                 palavra_encontrada = False
                 for verificar in linha_atual:
                     for t_vez in lista_termo_atual:
                         if verificar == t_vez:
                             palavra_encontrada = True
-                            contar_termo_localizado += 1
+                            contar_versiculo_localizado += 1
                             break
                     if palavra_encontrada:
                         break
@@ -555,6 +559,7 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
                         if achou:
                             # True indica que é o termo procurado
                             mapa.append((True, linha_unida_lista[j][2]))
+                            contar_termo_localizado += 1
                         else:
                             # False indica que é uma palavra comum
                             mapa.append((False, linha_unida_lista[j][2]))
@@ -576,15 +581,14 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
                                end='', window=win2)
                         
                         if contar_testes == len(mapa):
+                            # apesar de não imprimir nada, más força
+                            # passar para a próxima linha.
                            print('')
  
             # FIXME: Preciso Resolver estes problemas
 
-            # ! Falta colocar o contador de palavras em todas as opções
-            # ! Falta deixar um contador para contar quantos versículos
-            # ! contêm a palavra pesquisada e um outro para contar
-            # ! quantas vezes a palavra foi localizada, considerando que
-            # ! a palavra pode estar mais de uma vez em um versículo.
+            # Testar com as palavras: montanha
+
             # * Falta colocar para gravar um arquivo HTML com a lista
             # * dos versículos que foram localizados
             # ! Falta passar a obedecer o filtro de só pesquisar nos
@@ -601,7 +605,7 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
             # * digitado a palavra com ou sem acento.
             # ! Colocar uma opção para caso o resultado da pesquisa
             # ! retorne apenas uma linha, possa mostrar também, as K
-            # ! linhas antesriores e K posteriores.
+            # ! linhas anteriores e K posteriores.
 
             # TODO: Falta colocar uma opção para ler do arquivo txt
             # TODO  as linhas que descrevem ao que vai se referir os
@@ -630,11 +634,13 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
                 qtde = linha_atual.count(termo_atual)
                 # ? tam_termo = len(termo_atual)   REPETIDO NÃO PRECISA?
                 if qtde > 0:
+                    contar_versiculo_localizado += 1
                     cp(f'{linha_inicio} ', colors='blue on floralwhite',
                        end='', window=win2)
                     # Mostrar os trechos da linha distinguindo-os do
                     # termo localizado
                     for pos in range(qtde):
+                        contar_termo_localizado += 1
                         if pos == 0:
                             # Quando o termo localizado inicia a linha
                             palavra_linha = linha[0:tam_termo]
@@ -671,9 +677,15 @@ def pesquisar_na_biblia(termo_pesquisa: str, tp_pesq) -> None:
                      end='', window=win2)
 
             if tp_pesq == 7:
-                pass
                 # 7 usa a linha original mostra a linha toda
-                # não procura palavra
+                # verifica se o termo inicia o versículo
+                # optei por verificar se o termo consta no início da
+                # linha sem considerar os 7 caracteres inicias que são
+                # o número geral do versículo e a identificação AT/NT
+                if linha_o_min[8:].startswith(termo_min):
+                    contar_versiculo_localizado += 1
+                    cp(f'{linha_o}', colors='black on floralwhite',
+                        end='', window=win2)
 
             # Se digitar espaço em branco na busca a busca vai ser por
             # frase e não por uma palavra iteira, então a opção
@@ -899,7 +911,9 @@ if __name__ == '__main__':
                 sg.Text('Diferencia Maiúscula/Minúscula: Não',
                     key='_dif_mai_min_status'),
                 sg.Text('T:'), sg.Text('.', key='_tipo_pesquisa'),
-                sg.Text('Localizados:'), sg.Text('.......', 
+                sg.Text('Qtde Versículos:'), sg.Text('.......', 
+                    key='_versiculo_localizado'),
+                sg.Text('Qtde termo:'), sg.Text('.......', 
                     key='_termo_localizado'),],
                 [sg.Button('Voltar'),
                 sg.Button('Iniciar'),
