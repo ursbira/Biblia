@@ -11,12 +11,12 @@
 ##          e) espaço em branco Quando a linha inicia com um espaço em branco significa que é a identificação do LIVRO E CAPÍTULO.
 ##               Para Livros em que haja numeração Romana como em "I SAMUEL" o sinal de = separa o algarismo romano do nome ficando "I=SAMUEL".
 ##               Para Livros em que haja nome composto como em "CÂNTICO DOS CÂNTICOS" o sinal de = separa as palavras do nome ficando "CÂNTICO=DOS=CÂNTICOS"
-##          f) Quando o primeiro caracter for:
+##          f) Quando o primeiro caractere for:
 ##               a) uma Letra é por que é o nome do livro da Bíblia, exemplo: começa com GÊNESIS ou ÊXODO ou DEUTERONÔMIO, etc.
-##               b) um número indica que é o número do versículo do livro em uma das linhas que a precede.
+##               b) um número indica que é o número do versículo capítulo do livro designado em uma das linhas que a precede.
 ##                  A numeração do versículo se reinicia a cada capítulo.
 ##     2) Caracteres especiais que não estão no início da linha:
-##          a) Se a linha começar com o caracter |
+##          a) Se a linha começar com o caractere |
 ##               1) : separa o nome do Livro do seu respectivo número do capítulo e do versículo.
 ##               2) => Logo em seguida vem o texto que será exibido antes do Versículo do capítulo identificado,
 ##                     como exemplificando no item 1) d).
@@ -32587,7 +32587,7 @@ APOCALIPSE
 #0082                                   <font color=red>2.0 - Para mostrar dos os capítulos e versículos de um livro:</font><br />
 #0083                                   2.1 - Digite ":EZEQUIEL:" ou para livros que tem numeração digite ":I:JOÃO:" ;<br /><br />
 #0084                                   <font color=red>3.0 - Para mostrar todos os versículos de um Capítulo de um Livro:</font><br />
-#0085                                   <font color=blue>3.1 - Digite o caracter "dois pontos" seguido do nome do Livro, "dois pontos" novamente seguido do número do Capítulo. Exemplo:  ":EZEQUIEL:1:"<br />
+#0085                                   <font color=blue>3.1 - Digite o caractere "dois pontos" seguido do nome do Livro, "dois pontos" novamente seguido do número do Capítulo. Exemplo:  ":EZEQUIEL:1:"<br />
 #0086                                   3.2 - Se você digitar ":EZEQUIEL:1", sem os "dois pontos" no final serão listas os Capítulos 1 e os de 10 a 19 também.<br />
 #0087                                   3.3 - Para livros que tem numeração como "I=JOÃO", "II=JOÃO", digitar ":I:JOÃO:1:",<br /><br />
 #0088                                   <font color=red>4.1 - Para mostrar um versículo específico:</font><br /><font color=blue>4.2 - Digite: ":ESTER:8:9</font><br /><br />
